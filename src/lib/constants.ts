@@ -34,9 +34,15 @@ export const TYPES_PROJET = [
 ]
 
 export const COULEURS = {
-  primary: '#F59E0B',    // Jaune solaire
-  secondary: '#059669',  // Vert énergie
-  dark: '#1E3A5F',       // Bleu nuit (professionnel)
-  light: '#FEF3C7',      // Jaune clair
-  accent: '#DC2626',     // Rouge accent
+  primary: '#B83232',    // Rouge brique logo NET
+  secondary: '#1E3A5F',  // Bleu marine professionnel
+  accent: '#F59E0B',     // Jaune solaire (accents)
+  light: '#FDE8E8',      // Rouge clair
+  dark: '#1A1A1A',       // Texte sombre
+}
+
+export const IMAGES = {
+  logo: '/images/logo/logo-net.png',
+  heroPanneaux: '/images/hero/panneaux.jpg',
+  heroPompage: '/images/hero/pompage.jpg',
 }

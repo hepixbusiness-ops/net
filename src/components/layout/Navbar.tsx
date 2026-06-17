@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Menu, X, Phone, ShoppingCart } from 'lucide-react'
-import { SITE } from '@/lib/constants'
+import { Menu, X, Phone } from 'lucide-react'
+import { SITE, IMAGES } from '@/lib/constants'
 
 const navLinks = [
   { href: '/', label: 'Accueil' },
@@ -21,15 +21,20 @@ export default function Navbar() {
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
-              N
-            </div>
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src={IMAGES.logo}
+              alt="NEW ENERGY TECHNOLOGY SARL"
+              width={56}
+              height={56}
+              className="object-contain"
+              priority
+            />
             <div className="hidden sm:block">
-              <p className="font-bold text-blue-900 text-sm leading-tight">NEW ENERGY</p>
-              <p className="text-amber-500 text-xs font-semibold">TECHNOLOGY SARL</p>
+              <p className="font-bold text-gray-900 text-sm leading-tight tracking-wide">NEW ENERGY TECHNOLOGY</p>
+              <p className="text-[#B83232] text-xs font-semibold tracking-widest">SARL</p>
             </div>
           </Link>
 
@@ -39,7 +44,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-700 hover:text-amber-500 font-medium text-sm transition-colors"
+                className="text-gray-700 hover:text-[#B83232] font-medium text-sm transition-colors"
               >
                 {link.label}
               </Link>
@@ -50,16 +55,16 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href={`tel:${SITE.phone}`}
-              className="hidden sm:flex items-center gap-1 text-sm text-green-700 font-semibold hover:text-green-900"
+              className="hidden sm:flex items-center gap-1 text-sm text-[#B83232] font-semibold hover:text-red-900"
             >
-              <Phone size={16} />
+              <Phone size={15} />
               {SITE.phone}
             </a>
             <Link
-              href="/boutique"
-              className="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors hidden md:block"
+              href="/contact"
+              className="bg-[#B83232] hover:bg-red-800 text-white px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors hidden md:block"
             >
-              Commander
+              Devis gratuit
             </Link>
             <button
               onClick={() => setOpen(!open)}
@@ -80,18 +85,25 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block py-3 text-gray-700 font-medium border-b border-gray-50 hover:text-amber-500"
+              className="block py-3 text-gray-700 font-medium border-b border-gray-50 hover:text-[#B83232]"
             >
               {link.label}
             </Link>
           ))}
           <a
             href={`tel:${SITE.phone}`}
-            className="flex items-center gap-2 py-3 text-green-700 font-semibold"
+            className="flex items-center gap-2 py-3 text-[#B83232] font-semibold"
           >
             <Phone size={16} />
             {SITE.phone}
           </a>
+          <Link
+            href="/contact"
+            onClick={() => setOpen(false)}
+            className="mt-2 block text-center bg-[#B83232] text-white font-bold py-3 rounded-lg"
+          >
+            Demander un devis gratuit
+          </Link>
         </div>
       )}
     </header>

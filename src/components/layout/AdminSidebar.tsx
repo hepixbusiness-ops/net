@@ -17,13 +17,13 @@ export default function AdminSidebar() {
   const pathname = usePathname()
 
   return (
-    <aside className="w-64 bg-blue-900 text-white min-h-screen flex flex-col">
-      <div className="p-6 border-b border-blue-800">
+    <aside className="w-64 bg-[#1E3A5F] text-white min-h-screen flex flex-col">
+      <div className="p-6 border-b border-white/10">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center font-bold text-sm">N</div>
+          <div className="w-8 h-8 bg-[#B83232] rounded-lg flex items-center justify-center font-bold text-sm">N</div>
           <div>
             <p className="font-bold text-sm">NET Solaire</p>
-            <p className="text-amber-400 text-xs">Administration</p>
+            <p className="text-[#B83232] text-xs">Administration</p>
           </div>
         </div>
       </div>
@@ -35,8 +35,8 @@ export default function AdminSidebar() {
             href={href}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
               pathname === href
-                ? 'bg-amber-500 text-white'
-                : 'text-blue-200 hover:bg-blue-800 hover:text-white'
+                ? 'bg-[#B83232] text-white'
+                : 'text-blue-200 hover:bg-white/10 hover:text-white'
             }`}
           >
             <Icon size={18} />

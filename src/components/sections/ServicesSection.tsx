@@ -1,38 +1,36 @@
 import Link from 'next/link'
-import { Sun, Droplets, Lightbulb, Wrench, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
+import { IMAGES } from '@/lib/constants'
 
 const services = [
   {
     id: 'installation_solaire',
-    icon: Sun,
+    image: IMAGES.heroPanneaux,
     titre: 'Installation Solaire',
-    description: 'Conception et installation de systèmes solaires pour résidences, entreprises et bâtiments industriels. Étude personnalisée, installation professionnelle et mise en service.',
+    description: 'Conception et installation de systèmes solaires pour résidences, entreprises et bâtiments industriels. Étude personnalisée et mise en service.',
     lien: '/services#installation',
-    couleur: 'bg-amber-50 text-amber-600 border-amber-200',
   },
   {
     id: 'pompage_solaire',
-    icon: Droplets,
+    image: IMAGES.heroPompage,
     titre: 'Pompage Solaire',
     description: 'Solutions de pompage alimentées par l\'énergie solaire pour l\'irrigation agricole, l\'alimentation en eau potable et les besoins industriels.',
     lien: '/services#pompage',
-    couleur: 'bg-blue-50 text-blue-600 border-blue-200',
   },
   {
     id: 'eclairage_solaire',
-    icon: Lightbulb,
+    image: null,
     titre: 'Éclairage Solaire',
-    description: 'Installation de lampadaires solaires pour rues, parking, stades et zones rurales. Solutions autonomes sans raccordement au réseau électrique.',
+    description: 'Installation de lampadaires solaires pour rues, parkings, stades et zones rurales. Solutions autonomes sans raccordement au réseau.',
     lien: '/services#eclairage',
-    couleur: 'bg-green-50 text-green-600 border-green-200',
   },
   {
     id: 'maintenance',
-    icon: Wrench,
+    image: null,
     titre: 'Maintenance & SAV',
-    description: 'Service après-vente, entretien préventif et curatif de vos installations solaires. Intervention rapide sur toute l\'étendue du territoire camerounais.',
+    description: 'Service après-vente, entretien préventif et curatif de vos installations solaires. Intervention rapide sur tout le Cameroun.',
     lien: '/services#maintenance',
-    couleur: 'bg-purple-50 text-purple-600 border-purple-200',
   },
 ]
 
@@ -40,40 +38,56 @@ export default function ServicesSection() {
   return (
     <section className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-blue-900 mb-4">
+        <div className="text-center mb-14">
+          <span className="text-[#B83232] text-sm font-bold uppercase tracking-widest">Ce que nous faisons</span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A5F] mt-2 mb-4">
             Nos Services
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            De l&apos;installation à la maintenance, nous vous accompagnons dans tous vos projets d&apos;énergie solaire.
+          <p className="text-gray-500 max-w-2xl mx-auto">
+            De l&apos;installation à la maintenance, nous vous accompagnons dans tous vos projets d&apos;énergie solaire au Cameroun.
           </p>
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => {
-            const Icon = service.icon
-            return (
-              <div key={service.id} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-4 border ${service.couleur}`}>
-                  <Icon size={28} />
-                </div>
-                <h3 className="font-bold text-blue-900 text-lg mb-3">{service.titre}</h3>
+          {services.map((service) => (
+            <div key={service.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow group">
+              {/* Image ou placeholder */}
+              <div className="aspect-video bg-gray-100 relative overflow-hidden">
+                {service.image ? (
+                  <Image
+                    src={service.image}
+                    alt={service.titre}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-red-50 to-blue-50 text-5xl">
+                    {service.id === 'eclairage_solaire' ? '💡' : '🔧'}
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                <span className="absolute bottom-3 left-3 bg-[#B83232] text-white text-xs font-bold px-3 py-1 rounded-full">
+                  {service.titre}
+                </span>
+              </div>
+
+              <div className="p-5">
                 <p className="text-gray-600 text-sm leading-relaxed mb-4">{service.description}</p>
                 <Link
                   href={service.lien}
-                  className="inline-flex items-center gap-1 text-amber-600 font-semibold text-sm hover:text-amber-700"
+                  className="inline-flex items-center gap-1 text-[#B83232] font-semibold text-sm hover:gap-2 transition-all"
                 >
                   En savoir plus <ArrowRight size={14} />
                 </Link>
               </div>
-            )
-          })}
+            </div>
+          ))}
         </div>
 
-        <div className="text-center mt-10">
+        <div className="text-center mt-12">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-blue-900 hover:bg-blue-800 text-white font-bold px-8 py-4 rounded-xl transition-colors"
+            className="inline-flex items-center gap-2 bg-[#1E3A5F] hover:bg-blue-900 text-white font-bold px-8 py-4 rounded-xl transition-colors"
           >
             Demander un devis gratuit <ArrowRight size={18} />
           </Link>
