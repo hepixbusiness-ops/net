@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Champs manquants' }, { status: 400 })
     }
 
-    const { error } = await supabaseAdmin().from('messages_contact').insert({
+    const { error } = await (supabaseAdmin() as any).from('messages_contact').insert({
       nom: nom.trim(),
       email: email.trim().toLowerCase(),
       telephone: telephone.trim(),

@@ -70,9 +70,9 @@ export default function ProduitForm({ produit }: { produit?: any }) {
       }
 
       if (produit?.id) {
-        await supabase.from('produits').update(payload).eq('id', produit.id)
+        await (supabase as any).from('produits').update(payload).eq('id', produit.id)
       } else {
-        await supabase.from('produits').insert(payload)
+        await (supabase as any).from('produits').insert(payload)
       }
       setSuccess(true)
       setTimeout(() => router.push('/admin/produits'), 1500)

@@ -19,7 +19,7 @@ export default async function BoutiquePage({
   const params = await searchParams
   const categorieActive = params.categorie
 
-  let query = supabase.from('produits').select('*').eq('actif', true).order('created_at', { ascending: false })
+  let query = (supabase as any).from('produits').select('*').eq('actif', true).order('created_at', { ascending: false })
   if (categorieActive) query = query.eq('categorie', categorieActive)
 
   const { data: produits } = await query
@@ -64,7 +64,7 @@ export default async function BoutiquePage({
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {produits.map((produit) => (
+              {produits.map((produit: any) => (
                 <div key={produit.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                   <Link href={`/boutique/${produit.slug}`}>
                     <div className="aspect-square bg-gray-100 relative">

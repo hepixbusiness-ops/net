@@ -4,7 +4,7 @@ import { Plus, Pencil, Eye, EyeOff } from 'lucide-react'
 import { CATEGORIES_PRODUITS } from '@/lib/constants'
 
 export default async function AdminProduitsPage() {
-  const { data: produits } = await supabaseAdmin()
+  const { data: produits } = await (supabaseAdmin() as any)
     .from('produits')
     .select('*')
     .order('created_at', { ascending: false })
@@ -39,7 +39,7 @@ export default async function AdminProduitsPage() {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-50">
-            {produits?.map((p) => (
+            {produits?.map((p: any) => (
               <tr key={p.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-6 py-4">
                   <div className="flex items-center gap-3">

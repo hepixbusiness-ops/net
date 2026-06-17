@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react'
+import { Phone, Mail, MapPin } from 'lucide-react'
 import { SITE, IMAGES } from '@/lib/constants'
 
 export default function Footer() {
@@ -28,13 +28,13 @@ export default function Footer() {
             <p className="text-gray-300 text-sm mb-5 leading-relaxed">{SITE.slogan}</p>
             <div className="flex gap-3">
               {[
-                { href: SITE.reseaux.facebook, Icon: Facebook },
-                { href: SITE.reseaux.instagram, Icon: Instagram },
-                { href: SITE.reseaux.linkedin, Icon: Linkedin },
-              ].map(({ href, Icon }) => (
+                { href: SITE.reseaux.facebook, label: 'f' },
+                { href: SITE.reseaux.instagram, label: 'in' },
+                { href: SITE.reseaux.linkedin, label: 'li' },
+              ].map(({ href, label }) => (
                 <a key={href} href={href} target="_blank" rel="noopener noreferrer"
-                  className="w-9 h-9 bg-white/10 hover:bg-[#B83232] rounded-full flex items-center justify-center transition-colors">
-                  <Icon size={16} />
+                  className="w-9 h-9 bg-white/10 hover:bg-[#B83232] rounded-full flex items-center justify-center transition-colors text-xs font-bold">
+                  {label}
                 </a>
               ))}
             </div>

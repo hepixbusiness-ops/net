@@ -4,7 +4,7 @@ import { Plus, Pencil, MapPin } from 'lucide-react'
 import { TYPES_PROJET } from '@/lib/constants'
 
 export default async function AdminRealisationsPage() {
-  const { data: realisations } = await supabaseAdmin()
+  const { data: realisations } = await (supabaseAdmin() as any)
     .from('realisations')
     .select('*')
     .order('date_realisation', { ascending: false })
@@ -25,7 +25,7 @@ export default async function AdminRealisationsPage() {
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {realisations?.map((real) => (
+        {realisations?.map((real: any) => (
           <div key={real.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
             <div className="aspect-video bg-gray-100 relative">
               {real.images[0] ? (

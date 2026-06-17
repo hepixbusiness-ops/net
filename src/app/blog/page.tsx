@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
-  const { data: articles } = await supabase
+  const { data: articles } = await (supabase as any)
     .from('articles')
     .select('*')
     .eq('publie', true)
@@ -35,7 +35,7 @@ export default async function BlogPage() {
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {articles.map((article) => (
+              {articles.map((article: any) => (
                 <Link key={article.id} href={`/blog/${article.slug}`} className="group">
                   <div className="bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow border border-gray-100">
                     <div className="aspect-video bg-gradient-to-br from-amber-100 to-blue-100">
@@ -47,7 +47,7 @@ export default async function BlogPage() {
                     </div>
                     <div className="p-5">
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {article.tags.slice(0, 2).map((tag) => (
+                        {article.tags.slice(0, 2).map((tag: string) => (
                           <span key={tag} className="bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-medium">{tag}</span>
                         ))}
                       </div>

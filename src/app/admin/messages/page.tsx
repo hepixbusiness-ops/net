@@ -2,7 +2,7 @@ import { supabaseAdmin } from '@/lib/supabase'
 import { Phone, Mail, Clock } from 'lucide-react'
 
 export default async function AdminMessagesPage() {
-  const { data: messages } = await supabaseAdmin()
+  const { data: messages } = await (supabaseAdmin() as any)
     .from('messages_contact')
     .select('*')
     .order('created_at', { ascending: false })
@@ -10,10 +10,10 @@ export default async function AdminMessagesPage() {
   return (
     <div className="p-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-2">Messages & Demandes de devis</h1>
-      <p className="text-gray-500 mb-6">{messages?.filter(m => !m.lu).length || 0} message(s) non lu(s)</p>
+      <p className="text-gray-500 mb-6">{messages?.filter((m: any) => !m.lu).length || 0} message(s) non lu(s)</p>
 
       <div className="space-y-4">
-        {messages?.map((msg) => (
+        {messages?.map((msg: any) => (
           <div key={msg.id} className={`bg-white rounded-2xl p-6 shadow-sm border-l-4 ${msg.lu ? 'border-gray-200' : 'border-amber-500'}`}>
             <div className="flex items-start justify-between mb-3">
               <div>
