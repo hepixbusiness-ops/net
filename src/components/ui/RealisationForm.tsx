@@ -156,7 +156,7 @@ export default function RealisationForm({ realisation }: { realisation?: any }) 
         </label>
         {uploadingImages && <p className="text-sm text-[#B83232] font-medium mb-3">⏳ Upload en cours...</p>}
         {form.images.length > 0 && (
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {form.images.map((url: string, i: number) => (
               <div key={url} className="relative aspect-video rounded-xl overflow-hidden bg-gray-100 group">
                 <img src={url} alt={`Photo ${i + 1}`} className="w-full h-full object-cover" />

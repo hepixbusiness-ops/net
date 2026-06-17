@@ -16,7 +16,7 @@ export default async function AdminCommandesPage() {
     .order('created_at', { ascending: false })
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-8">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Commandes</h1>
         <p className="text-gray-500">{commandes?.length || 0} commande(s) au total</p>

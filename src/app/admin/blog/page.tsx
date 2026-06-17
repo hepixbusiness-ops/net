@@ -10,19 +10,20 @@ export default async function AdminBlogPage() {
     .order('created_at', { ascending: false })
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 md:p-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Blog</h1>
           <p className="text-gray-500">{articles?.length || 0} article(s) — publié automatiquement chaque matin</p>
         </div>
         <div className="flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-xl text-sm font-semibold">
-          <Bot size={16} /> Agent IA actif — publication quotidienne 08h00
+          <Bot size={16} /> Agent IA actif — 08h00
         </div>
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-        <table className="w-full">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[500px]">
           <thead className="bg-gray-50 border-b border-gray-100">
             <tr>
               <th className="text-left px-6 py-4 text-sm font-semibold text-gray-600">Titre</th>
@@ -78,6 +79,7 @@ export default async function AdminBlogPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   )

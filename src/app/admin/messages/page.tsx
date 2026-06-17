@@ -8,7 +8,7 @@ export default async function AdminMessagesPage() {
     .order('created_at', { ascending: false })
 
   return (
-    <div className="p-8">
+    <div className="p-4 md:p-8">
       <h1 className="text-2xl font-bold text-gray-900 mb-2">Messages & Demandes de devis</h1>
       <p className="text-gray-500 mb-6">{messages?.filter((m: any) => !m.lu).length || 0} message(s) non lu(s)</p>
 

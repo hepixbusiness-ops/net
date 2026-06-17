@@ -12,22 +12,23 @@ export default async function AdminProduitsPage() {
   const getCatLabel = (id: string) => CATEGORIES_PRODUITS.find((c) => c.id === id)?.label || id
 
   return (
-    <div className="p-8">
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-4 md:p-8">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Produits</h1>
           <p className="text-gray-500">{produits?.length || 0} produit(s) au total</p>
         </div>
         <Link
           href="/admin/produits/nouveau"
-          className="flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold px-5 py-3 rounded-xl transition-colors"
+          className="flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold px-5 py-3 rounded-xl transition-colors"
         >
           <Plus size={18} /> Ajouter un produit
         </Link>
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
-        <table className="w-full">
+        <div className="overflow-x-auto">
+        <table className="w-full min-w-[600px]">
           <thead className="bg-gray-50 border-b border-gray-100">
             <tr>
               <th className="text-left px-6 py-4 text-sm font-semibold text-gray-600">Produit</th>
@@ -79,6 +80,7 @@ export default async function AdminProduitsPage() {
             )}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   )

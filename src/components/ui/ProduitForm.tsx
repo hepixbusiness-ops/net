@@ -164,7 +164,7 @@ export default function ProduitForm({ produit }: { produit?: any }) {
         </label>
         {uploadingImages && <p className="text-sm text-amber-600 font-medium mb-3">⏳ Upload en cours...</p>}
         {form.images.length > 0 && (
-          <div className="grid grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {form.images.map((url: string) => (
               <div key={url} className="relative aspect-square rounded-xl overflow-hidden bg-gray-100 group">
                 <img src={url} alt="" className="w-full h-full object-cover" />
