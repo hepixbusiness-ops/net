@@ -1,3 +1,6 @@
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 import { supabaseAdmin } from '@/lib/supabase'
 import { Package, Camera, FileText, ShoppingBag, MessageSquare, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
