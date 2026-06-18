@@ -46,7 +46,7 @@ const services = [
     id: 'eclairage',
     icon: Lightbulb,
     titre: 'Éclairage Solaire',
-    image: null,
+    image: IMAGES.heroLampadaire,
     description: 'Nos lampadaires solaires équipent rues, parkings, stades et zones rurales. Solutions entièrement autonomes, sans raccordement au réseau, avec allumage automatique au coucher du soleil.',
     avantages: [
       'Lampadaires tout-en-un (panneau intégré)',
@@ -61,7 +61,7 @@ const services = [
     id: 'maintenance',
     icon: Wrench,
     titre: 'Maintenance & SAV',
-    image: null,
+    image: IMAGES.heroMaintenance,
     description: 'Nous assurons l\'entretien préventif et curatif de toutes vos installations solaires. Notre équipe intervient rapidement sur tout le territoire camerounais pour préserver la performance de vos systèmes.',
     avantages: [
       'Contrats de maintenance annuels',

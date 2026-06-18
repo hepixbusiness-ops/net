@@ -20,14 +20,14 @@ const services = [
   },
   {
     id: 'eclairage_solaire',
-    image: null,
+    image: IMAGES.heroLampadaire,
     titre: 'Éclairage Solaire',
     description: 'Installation de lampadaires solaires pour rues, parkings, stades et zones rurales. Solutions autonomes sans raccordement au réseau.',
     lien: '/services#eclairage',
   },
   {
     id: 'maintenance',
-    image: null,
+    image: IMAGES.heroMaintenance,
     titre: 'Maintenance & SAV',
     description: 'Service après-vente, entretien préventif et curatif de vos installations solaires. Intervention rapide sur tout le Cameroun.',
     lien: '/services#maintenance',

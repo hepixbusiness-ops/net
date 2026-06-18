@@ -47,4 +47,6 @@ export const IMAGES = {
   logo: `${SUPABASE_STORAGE}/logo-net.jpeg`,
   heroPanneaux: `${SUPABASE_STORAGE}/panneaux.jpeg`,
   heroPompage: `${SUPABASE_STORAGE}/pompage.webp`,
+  heroLampadaire: `${SUPABASE_STORAGE}/lampadaire%20Solaire.jpeg`,
+  heroMaintenance: `${SUPABASE_STORAGE}/Maintenance%20%26%20SAV.jpg`,
 }
