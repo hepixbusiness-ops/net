@@ -1,5 +1,7 @@
 import { supabaseAdmin } from '@/lib/supabase'
-import { Phone, Mail, Clock } from 'lucide-react'
+import { Clock, Mail, Phone, User, MessageSquare } from 'lucide-react'
+
+export const dynamic = 'force-dynamic'
 
 export default async function AdminMessagesPage() {
   const { data: messages } = await (supabaseAdmin() as any)
@@ -9,36 +11,59 @@ export default async function AdminMessagesPage() {
 
   return (
     <div className="p-4 md:p-8">
-      <h1 className="text-2xl font-bold text-gray-900 mb-2">Messages & Demandes de devis</h1>
-      <p className="text-gray-500 mb-6">{messages?.filter((m: any) => !m.lu).length || 0} message(s) non lu(s)</p>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-gray-900">Messages</h1>
+        <p className="text-gray-500">{messages?.length || 0} message(s) reçu(s)</p>
+      </div>
 
       <div className="space-y-4">
         {messages?.map((msg: any) => (
-          <div key={msg.id} className={`bg-white rounded-2xl p-6 shadow-sm border-l-4 ${msg.lu ? 'border-gray-200' : 'border-amber-500'}`}>
-            <div className="flex items-start justify-between mb-3">
+          <div key={msg.id} className="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-4">
               <div>
-                <h3 className="font-bold text-gray-900">{msg.nom}</h3>
-                <p className="text-sm text-amber-700 font-medium">{msg.sujet}</p>
+                <h2 className="font-semibold text-gray-900 text-lg">{msg.sujet}</h2>
+                <div className="flex flex-wrap gap-4 mt-2 text-sm text-gray-500">
+                  <span className="flex items-center gap-1"><User size={14} /> {msg.nom}</span>
+                  <a href={`mailto:${msg.email}`} className="flex items-center gap-1 hover:text-amber-600">
+                    <Mail size={14} /> {msg.email}
+                  </a>
+                  {msg.telephone && (
+                    <a href={`tel:${msg.telephone}`} className="flex items-center gap-1 hover:text-amber-600">
+                      <Phone size={14} /> {msg.telephone}
+                    </a>
+                  )}
+                </div>
               </div>
-              <div className="flex items-center gap-1 text-gray-400 text-xs">
-                <Clock size={12} />
-                {new Date(msg.created_at).toLocaleDateString('fr-CM', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+              <div className="flex items-center gap-1 text-xs text-gray-400 shrink-0">
+                <Clock size={13} />
+                {new Date(msg.created_at).toLocaleDateString('fr-CM', {
+                  day: '2-digit', month: 'short', year: 'numeric',
+                  hour: '2-digit', minute: '2-digit'
+                })}
               </div>
             </div>
-            <p className="text-gray-600 text-sm mb-4">{msg.message}</p>
-            <div className="flex flex-wrap gap-4">
-              <a href={`tel:${msg.telephone}`} className="flex items-center gap-1 text-green-700 font-semibold text-sm hover:text-green-900">
-                <Phone size={14} /> {msg.telephone}
+            <div className="bg-gray-50 rounded-xl p-4 flex gap-3">
+              <MessageSquare size={16} className="text-gray-400 shrink-0 mt-0.5" />
+              <p className="text-gray-700 text-sm leading-relaxed whitespace-pre-wrap">{msg.message}</p>
+            </div>
+            <div className="flex gap-3 mt-4">
+              <a href={`mailto:${msg.email}?subject=Re: ${encodeURIComponent(msg.sujet)}`}
+                className="text-sm font-medium text-blue-600 hover:text-blue-800">
+                Répondre par email →
               </a>
-              <a href={`mailto:${msg.email}`} className="flex items-center gap-1 text-blue-700 font-semibold text-sm hover:text-blue-900">
-                <Mail size={14} /> {msg.email}
-              </a>
+              {msg.telephone && (
+                <a href={`https://wa.me/${msg.telephone.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer"
+                  className="text-sm font-medium text-green-600 hover:text-green-800">
+                  WhatsApp →
+                </a>
+              )}
             </div>
           </div>
         ))}
+
         {(!messages || messages.length === 0) && (
-          <div className="text-center py-16 text-gray-400 bg-white rounded-2xl">
-            Aucun message pour le moment.
+          <div className="bg-white rounded-2xl shadow-sm p-16 text-center text-gray-400">
+            Aucun message reçu pour le moment.
           </div>
         )}
       </div>
