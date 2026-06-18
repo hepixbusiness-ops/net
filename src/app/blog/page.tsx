@@ -5,6 +5,9 @@ import { Clock } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export const metadata: Metadata = {
   title: 'Blog — Actualités Énergie Solaire Cameroun',
   description: 'Conseils, actualités et guides sur l\'énergie solaire au Cameroun par New Energy Technology SARL.',

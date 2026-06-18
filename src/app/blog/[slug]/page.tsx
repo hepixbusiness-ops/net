@@ -6,6 +6,9 @@ import { ArrowLeft, Clock, Tag, Bot } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
   const { data } = await (supabase as any).from('articles').select('titre, extrait').eq('slug', slug).single()
