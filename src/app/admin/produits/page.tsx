@@ -2,6 +2,7 @@ import { supabaseAdmin } from '@/lib/supabase'
 import Link from 'next/link'
 import { Plus, Pencil, Eye, EyeOff } from 'lucide-react'
 import { CATEGORIES_PRODUITS } from '@/lib/constants'
+import SupprimerProduit from './SupprimerProduit'
 
 export default async function AdminProduitsPage() {
   const { data: produits } = await (supabaseAdmin() as any)
@@ -65,9 +66,12 @@ export default async function AdminProduitsPage() {
                   </span>
                 </td>
                 <td className="px-6 py-4">
-                  <Link href={`/admin/produits/${p.id}`} className="flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-medium">
-                    <Pencil size={14} /> Modifier
-                  </Link>
+                  <div className="flex items-center gap-1 flex-wrap">
+                    <Link href={`/admin/produits/${p.id}`} className="flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm font-medium">
+                      <Pencil size={14} /> Modifier
+                    </Link>
+                    <SupprimerProduit id={p.id} nom={p.nom} />
+                  </div>
                 </td>
               </tr>
             ))}
