@@ -5,6 +5,7 @@ import { supabaseAdmin } from '@/lib/supabase'
 import Link from 'next/link'
 import { Plus, Pencil, MapPin } from 'lucide-react'
 import { TYPES_PROJET } from '@/lib/constants'
+import SupprimerRealisation from './SupprimerRealisation'
 
 export default async function AdminRealisationsPage() {
   const { data: realisations } = await (supabaseAdmin() as any)
@@ -46,10 +47,13 @@ export default async function AdminRealisationsPage() {
                 <MapPin size={13} /> {real.lieu}
               </div>
               <p className="text-xs text-blue-600 font-medium mb-3">{getTypeLabel(real.type_projet)}</p>
-              <Link href={`/admin/realisations/${real.id}`}
-                className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-medium">
-                <Pencil size={13} /> Modifier
-              </Link>
+              <div className="flex items-center gap-3">
+                <Link href={`/admin/realisations/${real.id}`}
+                  className="flex items-center gap-1 text-sm text-blue-600 hover:text-blue-800 font-medium">
+                  <Pencil size={13} /> Modifier
+                </Link>
+                <SupprimerRealisation id={real.id} titre={real.titre} />
+              </div>
             </div>
           </div>
         ))}
