@@ -5,10 +5,14 @@ import MarquerLuButton from './MarquerLuButton'
 export const dynamic = 'force-dynamic'
 
 export default async function AdminMessagesPage() {
-  const { data: messages } = await (supabaseAdmin() as any)
+  const db = supabaseAdmin() as any
+  const { data: messages } = await db
     .from('messages_contact')
     .select('*')
     .order('created_at', { ascending: false })
+
+  // Marquer tous les non lus comme lus dès l'ouverture de la page
+  await db.from('messages_contact').update({ lu: true }).eq('lu', false)
 
   const nonLus = messages?.filter((m: any) => !m.lu).length || 0
 
