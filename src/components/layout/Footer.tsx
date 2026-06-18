@@ -80,10 +80,12 @@ export default function Footer() {
                 <MapPin size={16} className="mt-0.5 text-[#B83232] shrink-0" />
                 {SITE.adresse}
               </li>
-              <li className="flex items-center gap-2">
-                <Phone size={16} className="text-[#B83232] shrink-0" />
-                <a href={`tel:${SITE.phone}`} className="hover:text-[#B83232]">{SITE.phone}</a>
-              </li>
+              {SITE.phones.map((num) => (
+                <li key={num} className="flex items-center gap-2">
+                  <Phone size={16} className="text-[#B83232] shrink-0" />
+                  <a href={`tel:${num.replace(/\s/g,'')}`} className="hover:text-[#B83232]">{num}</a>
+                </li>
+              ))}
               <li className="flex items-center gap-2">
                 <Mail size={16} className="text-[#B83232] shrink-0" />
                 <a href={`mailto:${SITE.email}`} className="hover:text-[#B83232]">{SITE.email}</a>

@@ -5,6 +5,7 @@ export const SITE = {
   url: 'https://newenergytechnology.sarl',
   email: 'contact@newenergytechnology.sarl',
   phone: '+237 691 287 852',
+  phones: ['+237 691 287 852', '+237 677 659 959', '+237 678 067 592'],
   whatsapp: '+237691287852',
   adresse: 'Yaoundé, Cameroun',
   description: 'Spécialiste en installations solaires, pompage solaire et équipements solaires au Cameroun.',
