@@ -55,7 +55,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <a
               href={`tel:${SITE.phone}`}
-              className="hidden sm:flex items-center gap-1 text-sm text-[#B83232] font-semibold hover:text-red-900"
+              className="flex items-center gap-1 text-sm text-[#B83232] font-semibold hover:text-red-900"
             >
               <Phone size={15} />
               {SITE.phone}
