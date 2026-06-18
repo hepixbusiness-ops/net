@@ -20,6 +20,7 @@ export default function ProduitForm({ produit }: { produit?: any }) {
   const [loading, setLoading] = useState(false)
   const [uploadingImages, setUploadingImages] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState({
     nom: produit?.nom || '',
     description: produit?.description || '',
@@ -55,6 +56,7 @@ export default function ProduitForm({ produit }: { produit?: any }) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
+    setError('')
     try {
       const payload = {
         nom: form.nom,
@@ -86,6 +88,8 @@ export default function ProduitForm({ produit }: { produit?: any }) {
       }
       setSuccess(true)
       setTimeout(() => router.push('/admin/produits'), 1500)
+    } catch (err: any) {
+      setError(err.message || 'Erreur inconnue')
     } finally {
       setLoading(false)
     }
@@ -187,6 +191,12 @@ export default function ProduitForm({ produit }: { produit?: any }) {
           </div>
         )}
       </div>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3 text-sm font-medium">
+          ❌ Erreur : {error}
+        </div>
+      )}
 
       <div className="flex gap-4">
         <button type="submit" disabled={loading}
