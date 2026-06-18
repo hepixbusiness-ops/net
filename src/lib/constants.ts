@@ -41,8 +41,10 @@ export const COULEURS = {
   dark: '#1A1A1A',       // Texte sombre
 }
 
+const SUPABASE_STORAGE = 'https://wnixiooqtqxmrdpxglgo.supabase.co/storage/v1/object/public/media/image'
+
 export const IMAGES = {
-  logo: '/images/logo/logo-net.png',
-  heroPanneaux: '/images/hero/panneaux.jpg',
-  heroPompage: '/images/hero/pompage.jpg',
+  logo: `${SUPABASE_STORAGE}/logo-net.jpeg`,
+  heroPanneaux: `${SUPABASE_STORAGE}/panneaux.jpeg`,
+  heroPompage: `${SUPABASE_STORAGE}/pompage.webp`,
 }
