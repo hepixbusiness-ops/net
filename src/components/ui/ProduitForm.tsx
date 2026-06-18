@@ -70,9 +70,19 @@ export default function ProduitForm({ produit }: { produit?: any }) {
       }
 
       if (produit?.id) {
-        await (supabase as any).from('produits').update(payload).eq('id', produit.id)
+        const res = await fetch('/api/admin/produits', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: produit.id, ...payload }),
+        })
+        if (!res.ok) throw new Error(await res.text())
       } else {
-        await (supabase as any).from('produits').insert(payload)
+        const res = await fetch('/api/admin/produits', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (!res.ok) throw new Error(await res.text())
       }
       setSuccess(true)
       setTimeout(() => router.push('/admin/produits'), 1500)

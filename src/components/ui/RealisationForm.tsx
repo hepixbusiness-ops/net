@@ -68,9 +68,19 @@ export default function RealisationForm({ realisation }: { realisation?: any }) 
       }
 
       if (realisation?.id) {
-        await (supabase as any).from('realisations').update(payload).eq('id', realisation.id)
+        const res = await fetch('/api/admin/realisations', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: realisation.id, ...payload }),
+        })
+        if (!res.ok) throw new Error(await res.text())
       } else {
-        await (supabase as any).from('realisations').insert(payload)
+        const res = await fetch('/api/admin/realisations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (!res.ok) throw new Error(await res.text())
       }
       setSuccess(true)
       setTimeout(() => router.push('/admin/realisations'), 1500)
