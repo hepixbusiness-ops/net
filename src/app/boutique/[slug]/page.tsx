@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import CommandeModal from '@/components/ui/CommandeModal'
+import ProduitGalerie from '@/components/ui/ProduitGalerie'
+import CommanderWhatsApp from '@/components/ui/CommanderWhatsApp'
 import { ArrowLeft, CheckCircle, Package } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import { CATEGORIES_PRODUITS } from '@/lib/constants'
@@ -22,8 +23,6 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
   if (!produit) notFound()
 
   const catLabel = CATEGORIES_PRODUITS.find(c => c.id === produit.categorie)?.label || produit.categorie
-  const [imageActive, setImageActive] = [produit.images[0], null]
-
   return (
     <>
       <Navbar />
@@ -35,24 +34,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Galerie images */}
-            <div>
-              <div className="aspect-square rounded-2xl overflow-hidden bg-white shadow-sm mb-4">
-                {produit.images[0] ? (
-                  <img src={produit.images[0]} alt={produit.nom} className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-8xl bg-gray-50">☀️</div>
-                )}
-              </div>
-              {produit.images.length > 1 && (
-                <div className="grid grid-cols-4 gap-3">
-                  {produit.images.map((img: any, i: number) => (
-                    <div key={i} className="aspect-square rounded-xl overflow-hidden bg-white shadow-sm cursor-pointer">
-                      <img src={img} alt={`${produit.nom} ${i + 1}`} className="w-full h-full object-cover hover:opacity-80 transition-opacity" />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            <ProduitGalerie images={produit.images} nom={produit.nom} />
 
             {/* Détails produit */}
             <div>
@@ -96,7 +78,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
               </div>
 
               {/* Bouton commander */}
-              <CommandeModal produit={produit} />
+              <CommanderWhatsApp produit={produit} />
 
               <p className="text-xs text-gray-400 mt-3 text-center">
                 Livraison disponible à Yaoundé, Douala et dans toutes les grandes villes du Cameroun
