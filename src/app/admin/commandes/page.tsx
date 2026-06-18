@@ -3,6 +3,7 @@ export const revalidate = 0
 
 import { supabaseAdmin } from '@/lib/supabase'
 import { Phone, Mail, MapPin, Package } from 'lucide-react'
+import SupprimerCommande from './SupprimerCommande'
 
 const STATUTS: Record<string, { label: string; color: string }> = {
   en_attente:  { label: 'En attente',  color: 'bg-yellow-100 text-yellow-800' },
@@ -75,6 +76,10 @@ export default async function AdminCommandesPage() {
                   📝 {cmd.notes}
                 </p>
               )}
+
+              <div className="flex justify-end mt-4 pt-4 border-t border-gray-100">
+                <SupprimerCommande id={cmd.id} />
+              </div>
             </div>
           )
         })}
