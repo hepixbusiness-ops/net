@@ -27,11 +27,11 @@ export default async function DashboardPage() {
   const stats = await getStats()
 
   const cards = [
-    { label: 'Produits', value: stats.produits, icon: Package, href: '/admin/produits', color: 'bg-amber-500' },
-    { label: 'Réalisations', value: stats.realisations, icon: Camera, href: '/admin/realisations', color: 'bg-blue-500' },
-    { label: 'Articles Blog', value: stats.articles, icon: FileText, href: '/admin/blog', color: 'bg-green-500' },
-    { label: 'Commandes en attente', value: stats.commandesEnAttente, icon: ShoppingBag, href: '/admin/commandes', color: 'bg-orange-500' },
-    { label: 'Messages non lus', value: stats.messagesNonLus, icon: MessageSquare, href: '/admin/messages', color: 'bg-purple-500' },
+    { label: 'Produits', value: stats.produits, icon: Package, href: '/admin/produits', color: 'bg-amber-500', alert: false },
+    { label: 'Réalisations', value: stats.realisations, icon: Camera, href: '/admin/realisations', color: 'bg-blue-500', alert: false },
+    { label: 'Articles Blog', value: stats.articles, icon: FileText, href: '/admin/blog', color: 'bg-green-500', alert: false },
+    { label: 'Commandes en attente', value: stats.commandesEnAttente, icon: ShoppingBag, href: '/admin/commandes', color: 'bg-orange-500', alert: true },
+    { label: 'Messages non lus', value: stats.messagesNonLus, icon: MessageSquare, href: '/admin/messages', color: 'bg-purple-500', alert: true },
   ]
 
   return (
@@ -40,12 +40,17 @@ export default async function DashboardPage() {
       <p className="text-gray-500 mb-8">Bienvenue dans l&apos;espace d&apos;administration de New Energy Technology SARL</p>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-10">
-        {cards.map(({ label, value, icon: Icon, href, color }) => (
-          <Link key={label} href={href} className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+        {cards.map(({ label, value, icon: Icon, href, color, alert }) => (
+          <Link key={label} href={href} className={`relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow ${alert && value > 0 ? 'ring-2 ring-red-400' : ''}`}>
+            {alert && value > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-6 h-6 rounded-full flex items-center justify-center">
+                {value > 9 ? '9+' : value}
+              </span>
+            )}
             <div className={`w-12 h-12 ${color} rounded-xl flex items-center justify-center mb-4`}>
               <Icon size={22} className="text-white" />
             </div>
-            <p className="text-3xl font-bold text-gray-900 mb-1">{value}</p>
+            <p className={`text-3xl font-bold mb-1 ${alert && value > 0 ? 'text-red-500' : 'text-gray-900'}`}>{value}</p>
             <p className="text-gray-500 text-sm">{label}</p>
           </Link>
         ))}
