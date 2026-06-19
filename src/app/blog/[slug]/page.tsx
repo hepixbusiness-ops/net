@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
-import { ArrowLeft, Clock, Tag, Bot } from 'lucide-react'
+import { ArrowLeft, Clock, Tag } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 import type { Metadata } from 'next'
 
@@ -56,11 +56,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                 <Clock size={14} />
                 {new Date(article.created_at).toLocaleDateString('fr-CM', { day: 'numeric', month: 'long', year: 'numeric' })}
               </span>
-              {article.genere_par_ia && (
-                <span className="flex items-center gap-1 bg-white/10 px-3 py-1 rounded-full">
-                  <Bot size={13} /> Article généré par IA
-                </span>
-              )}
             </div>
           </div>
         </div>
