@@ -58,9 +58,6 @@ export default async function BlogPreview() {
                       {new Date(article.created_at).toLocaleDateString('fr-CM', {
                         day: 'numeric', month: 'long', year: 'numeric'
                       })}
-                      {article.genere_par_ia && (
-                        <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">IA</span>
-                      )}
                     </div>
                     <h3 className="font-bold text-blue-900 text-lg mb-2 line-clamp-2 group-hover:text-amber-600 transition-colors">
                       {article.titre}
