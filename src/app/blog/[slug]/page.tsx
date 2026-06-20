@@ -22,10 +22,10 @@ function renderMarkdown(content: string) {
     .replace(/^### (.+)$/gm, '<h3 class="text-xl font-bold text-[#1E3A5F] mt-6 mb-3">$1</h3>')
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-gray-900">$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>')
-    .replace(/^- (.+)$/gm, '<li class="flex items-start gap-2 mb-1"><span class="text-[#B83232] mt-1">•</span><span>$1</span></li>')
+    .replace(/^- (.+)$/gm, '<li class="flex items-start gap-2 mb-2"><span class="text-[#B83232] mt-1 shrink-0">•</span><span class="text-gray-800">$1</span></li>')
     .replace(/(<li.*<\/li>(\n|$))+/g, '<ul class="mb-4 space-y-1">$&</ul>')
-    .replace(/^(?!<[h|u|l]).+$/gm, '<p class="text-gray-700 leading-relaxed mb-4">$&</p>')
-    .replace(/<p class="text-gray-700 leading-relaxed mb-4"><\/p>/g, '')
+    .replace(/^(?!<[h|u|l]).+$/gm, '<p class="text-gray-800 leading-relaxed mb-4">$&</p>')
+    .replace(/<p class="text-gray-800 leading-relaxed mb-4"><\/p>/g, '')
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
@@ -108,7 +108,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     {autresArticles.map((a: any) => (
                       <Link key={a.id} href={`/blog/${a.slug}`} className="block group">
                         <p className="text-sm font-semibold text-gray-800 group-hover:text-[#B83232] transition-colors line-clamp-2 mb-1">{a.titre}</p>
-                        <p className="text-xs text-gray-400">
+                        <p className="text-xs text-gray-600">
                           {new Date(a.created_at).toLocaleDateString('fr-CM', { day: 'numeric', month: 'short' })}
                         </p>
                       </Link>

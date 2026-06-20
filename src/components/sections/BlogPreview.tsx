@@ -53,7 +53,7 @@ export default async function BlogPreview() {
                     )}
                   </div>
                   <div className="p-5">
-                    <div className="flex items-center gap-2 text-gray-400 text-xs mb-3">
+                    <div className="flex items-center gap-2 text-gray-500 text-xs mb-3">
                       <Clock size={12} />
                       {new Date(article.created_at).toLocaleDateString('fr-CM', {
                         day: 'numeric', month: 'long', year: 'numeric'

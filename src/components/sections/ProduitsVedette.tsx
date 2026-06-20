@@ -65,7 +65,7 @@ export default async function ProduitsVedette() {
                         {(produit.prix_promo || produit.prix).toLocaleString('fr-CM')} FCFA
                       </span>
                       {produit.prix_promo && (
-                        <span className="text-gray-400 text-sm line-through">
+                        <span className="text-gray-500 text-sm line-through">
                           {produit.prix.toLocaleString('fr-CM')}
                         </span>
                       )}

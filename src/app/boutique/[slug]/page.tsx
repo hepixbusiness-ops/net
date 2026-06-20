@@ -47,7 +47,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
                   {(produit.prix_promo || produit.prix).toLocaleString('fr-CM')} FCFA
                 </span>
                 {produit.prix_promo && (
-                  <span className="text-lg text-gray-400 line-through">{produit.prix.toLocaleString('fr-CM')} FCFA</span>
+                  <span className="text-lg text-gray-500 line-through">{produit.prix.toLocaleString('fr-CM')} FCFA</span>
                 )}
                 {produit.prix_promo && (
                   <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
@@ -80,7 +80,7 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
               {/* Bouton commander */}
               <CommanderWhatsApp produit={produit} />
 
-              <p className="text-xs text-gray-400 mt-3 text-center">
+              <p className="text-xs text-gray-600 mt-3 text-center">
                 Livraison disponible à Yaoundé, Douala et dans toutes les grandes villes du Cameroun
               </p>
             </div>

@@ -58,7 +58,7 @@ export default async function BlogPage() {
                         {article.titre}
                       </h2>
                       <p className="text-gray-600 text-sm line-clamp-3 mb-4">{article.extrait}</p>
-                      <div className="flex items-center gap-2 text-gray-400 text-xs">
+                      <div className="flex items-center gap-2 text-gray-600 text-xs">
                         <Clock size={12} />
                         {new Date(article.created_at).toLocaleDateString('fr-CM', { day: 'numeric', month: 'long', year: 'numeric' })}
                       </div>
