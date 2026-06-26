@@ -228,74 +228,51 @@ export default function ServicesPage() {
         </section>
 
         {/* ===== AUTRES SERVICES ===== */}
-        {autresServices.map((service, index) => {
-          const Icon = service.icon
-          const isEven = index % 2 === 0
-          return (
-            <section key={service.id} id={service.id} className={`py-20 ${isEven ? 'bg-white' : 'bg-gray-50'}`}>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Titre section */}
-                <div className="flex items-center gap-4 mb-12">
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ backgroundColor: service.couleur + '15' }}>
-                    <Icon size={28} style={{ color: service.couleur }} />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color: service.couleur }}>Nos prestations</p>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A5F]">{service.titre}</h2>
-                  </div>
-                </div>
-
-                <div className="grid lg:grid-cols-2 gap-12 items-start">
-                  {/* Prestations */}
-                  <div>
-                    <p className="text-gray-700 text-lg leading-relaxed mb-8">{service.description}</p>
-                    <div className="grid sm:grid-cols-2 gap-3">
-                      {service.prestations.map((p) => (
-                        <div key={p.label} className="flex items-center gap-3 bg-gray-50 rounded-xl px-4 py-3">
-                          <CheckCircle size={16} className="shrink-0" style={{ color: service.couleur }} />
-                          <span className="text-sm text-gray-800 font-medium">{p.label}</span>
-                        </div>
-                      ))}
-                    </div>
-                    <Link href="/contact"
-                      className="inline-flex items-center gap-2 text-white font-bold px-6 py-3 rounded-xl transition-colors mt-8"
-                      style={{ backgroundColor: service.couleur }}>
-                      Demander un devis <ArrowRight size={18} />
-                    </Link>
-                  </div>
-
-                  {/* Avantages clés */}
-                  <div className="space-y-5">
-                    <h3 className="font-bold text-[#1E3A5F] text-xl mb-6">Pourquoi nous choisir ?</h3>
-                    {service.avantagesCles.map((av, i) => (
-                      <div key={i} className="flex gap-4 p-5 bg-white rounded-2xl shadow-sm border border-gray-100">
-                        <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-lg font-bold text-white"
-                          style={{ backgroundColor: service.couleur }}>
-                          {i + 1}
-                        </div>
-                        <div>
-                          <p className="font-bold text-gray-900 mb-1">{av.titre}</p>
-                          <p className="text-gray-600 text-sm leading-relaxed">{av.desc}</p>
+        <section id="videosurveillance" className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="inline-block bg-[#B83232]/10 text-[#B83232] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-3">Autres Services</span>
+              <h2 className="text-3xl sm:text-4xl font-bold text-[#1E3A5F]">Vidéosurveillance, Électricité & Plomberie</h2>
+              <p className="text-gray-600 mt-3 max-w-xl mx-auto">Des techniciens qualifiés pour tous vos projets techniques</p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {autresServices.map((service) => {
+                const Icon = service.icon
+                return (
+                  <div key={service.id} id={service.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow group">
+                    <div className="relative aspect-video flex items-center justify-center" style={{ background: `linear-gradient(135deg, ${service.couleur}dd, ${service.couleur}88)` }}>
+                      <Icon size={64} className="text-white opacity-30" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-6xl">{service.emoji}</span>
+                      </div>
+                      <div className="absolute bottom-3 left-3">
+                        <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: service.couleur }}>
+                          <Icon size={18} className="text-white" />
                         </div>
                       </div>
-                    ))}
-
-                    {/* CTA contact direct */}
-                    <div className="rounded-2xl p-5 text-white mt-4" style={{ backgroundColor: service.couleur }}>
-                      <p className="font-bold mb-1">Besoin d'un devis rapide ?</p>
-                      <p className="text-sm opacity-80 mb-3">Réponse sous 2h, intervention sous 24h à Yaoundé.</p>
-                      <a href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-white font-bold text-sm px-4 py-2 rounded-lg transition-opacity hover:opacity-90"
-                        style={{ color: service.couleur }}>
-                        WhatsApp →
-                      </a>
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-bold text-[#1E3A5F] text-lg mb-2">{service.titre}</h3>
+                      <p className="text-gray-600 text-sm mb-4 leading-relaxed line-clamp-3">{service.description}</p>
+                      <ul className="space-y-1.5">
+                        {service.prestations.slice(0, 5).map((p) => (
+                          <li key={p.label} className="flex items-start gap-2 text-xs text-gray-700">
+                            <CheckCircle size={13} className="shrink-0 mt-0.5" style={{ color: service.couleur }} /> {p.label}
+                          </li>
+                        ))}
+                      </ul>
+                      <Link href="/contact"
+                        className="inline-flex items-center gap-2 text-white text-sm font-bold px-4 py-2.5 rounded-xl transition-opacity hover:opacity-90 mt-4"
+                        style={{ backgroundColor: service.couleur }}>
+                        Demander un devis <ArrowRight size={15} />
+                      </Link>
                     </div>
                   </div>
-                </div>
-              </div>
-            </section>
-          )
-        })}
+                )
+              })}
+            </div>
+          </div>
+        </section>
 
         {/* CTA final */}
         <section className="bg-[#1E3A5F] py-16 text-white text-center">
