@@ -18,11 +18,11 @@ export const SITE = {
 }
 
 export const CATEGORIES_PRODUITS = [
-  { id: 'lampadaires', label: 'Lampadaires Solaires' },
   { id: 'panneaux_solaires', label: 'Panneaux Solaires' },
+  { id: 'pompes_solaires', label: 'Pompes Solaires' },
+  { id: 'lampadaires', label: 'Lampadaires Solaires' },
   { id: 'batteries', label: 'Batteries' },
   { id: 'onduleurs', label: 'Onduleurs' },
-  { id: 'pompes_solaires', label: 'Pompes Solaires' },
   { id: 'kits_solaires', label: 'Kits Solaires' },
   { id: 'accessoires', label: 'Accessoires' },
 ]
