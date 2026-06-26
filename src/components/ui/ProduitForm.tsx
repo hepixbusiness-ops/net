@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Upload, X, CheckCircle } from 'lucide-react'
-import { CATEGORIES_PRODUITS } from '@/lib/constants'
+import { CATEGORIES_PRODUITS, SOUS_CATEGORIES_ACCESSOIRES } from '@/lib/constants'
 import { supabase } from '@/lib/supabase'
 
 function slugify(text: string) {
@@ -27,6 +27,7 @@ export default function ProduitForm({ produit }: { produit?: any }) {
     prix: produit?.prix || '',
     prix_promo: produit?.prix_promo || '',
     categorie: produit?.categorie || CATEGORIES_PRODUITS[0].id,
+    sous_categorie: produit?.sous_categorie || '',
     stock: produit?.stock || 0,
     en_vedette: produit?.en_vedette || false,
     actif: produit?.actif ?? true,
@@ -64,6 +65,7 @@ export default function ProduitForm({ produit }: { produit?: any }) {
         prix: Number(form.prix),
         prix_promo: form.prix_promo ? Number(form.prix_promo) : null,
         categorie: form.categorie,
+        sous_categorie: form.categorie === 'accessoires' ? form.sous_categorie : null,
         stock: Number(form.stock),
         en_vedette: form.en_vedette,
         actif: form.actif,
@@ -126,11 +128,22 @@ export default function ProduitForm({ produit }: { produit?: any }) {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">Catégorie *</label>
-          <select required value={form.categorie} onChange={(e) => setForm({ ...form, categorie: e.target.value })}
+          <select required value={form.categorie} onChange={(e) => setForm({ ...form, categorie: e.target.value, sous_categorie: '' })}
             className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm bg-white">
             {CATEGORIES_PRODUITS.map((c) => <option key={c.id} value={c.id}>{c.label}</option>)}
           </select>
         </div>
+
+        {form.categorie === 'accessoires' && (
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Sous-catégorie accessoire</label>
+            <select value={form.sous_categorie} onChange={(e) => setForm({ ...form, sous_categorie: e.target.value })}
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm bg-white">
+              <option value="">— Choisir une sous-catégorie —</option>
+              {SOUS_CATEGORIES_ACCESSOIRES.map((sc) => <option key={sc.id} value={sc.id}>{sc.label}</option>)}
+            </select>
+          </div>
+        )}
 
         <div className="grid sm:grid-cols-3 gap-4">
           <div>
