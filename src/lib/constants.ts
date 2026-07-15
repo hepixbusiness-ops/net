@@ -25,6 +25,7 @@ export const CATEGORIES_PRODUITS = [
   { id: 'onduleurs', label: 'Onduleurs' },
   { id: 'kits_solaires', label: 'Kits Solaires' },
   { id: 'accessoires', label: 'Accessoires' },
+  { id: 'cameras_videosurveillance', label: 'Caméras & Vidéosurveillance' },
 ]
 
 export const SOUS_CATEGORIES_ACCESSOIRES = [
