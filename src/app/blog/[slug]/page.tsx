@@ -11,9 +11,19 @@ export const revalidate = 0
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const { data } = await (supabase as any).from('articles').select('titre, extrait').eq('slug', slug).single()
+  const { data } = await (supabase as any).from('articles').select('titre, extrait, image_couverture').eq('slug', slug).single()
   if (!data) return { title: 'Article introuvable' }
-  return { title: data.titre, description: data.extrait }
+  return {
+    title: data.titre,
+    description: data.extrait,
+    alternates: { canonical: `https://newenergytechnology.sarl/blog/${slug}` },
+    openGraph: {
+      title: data.titre,
+      description: data.extrait,
+      type: 'article',
+      ...(data.image_couverture ? { images: [{ url: data.image_couverture, width: 1200, height: 630, alt: data.titre }] } : {}),
+    },
+  }
 }
 
 function renderMarkdown(content: string) {
@@ -38,8 +48,24 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     .from('articles').select('id, titre, slug, extrait, created_at').eq('publie', true)
     .neq('slug', slug).limit(3).order('created_at', { ascending: false })
 
+  const blogJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: article.titre,
+    description: article.extrait,
+    datePublished: article.created_at,
+    dateModified: article.updated_at || article.created_at,
+    author: { '@type': 'Organization', name: 'New Energy Technology SARL', url: 'https://newenergytechnology.sarl' },
+    publisher: { '@type': 'Organization', name: 'New Energy Technology SARL', logo: { '@type': 'ImageObject', url: 'https://newenergytechnology.sarl/logo.jpg' } },
+    url: `https://newenergytechnology.sarl/blog/${slug}`,
+    ...(article.image_couverture ? { image: article.image_couverture } : {}),
+    keywords: article.tags?.join(', '),
+    inLanguage: 'fr',
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }} />
       <Navbar />
       <main className="bg-gray-50 min-h-screen">
         {/* Header article */}

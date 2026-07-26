@@ -10,8 +10,13 @@ import { ShoppingCart } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Boutique — Équipements Solaires',
-  description: 'Achetez vos équipements solaires : lampadaires, panneaux solaires, batteries, pompes solaires au Cameroun.',
+  title: 'Boutique — Équipements Solaires au Cameroun',
+  description: 'Achetez vos équipements solaires : panneaux solaires, pompes solaires, lampadaires, batteries, onduleurs, kits solaires et accessoires. Livraison au Cameroun.',
+  alternates: { canonical: 'https://newenergytechnology.sarl/boutique' },
+  openGraph: {
+    title: 'Boutique — Équipements Solaires au Cameroun',
+    description: 'Panneaux solaires, pompes solaires, lampadaires, batteries et kits solaires. Livraison partout au Cameroun.',
+  },
 }
 
 export default async function BoutiquePage({

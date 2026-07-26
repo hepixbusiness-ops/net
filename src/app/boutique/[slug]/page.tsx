@@ -11,9 +11,19 @@ import type { Metadata } from 'next'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const { data } = await (supabase as any).from('produits').select('nom, description').eq('slug', slug).single()
+  const { data } = await (supabase as any).from('produits').select('nom, description, images, prix, prix_promo').eq('slug', slug).single()
   if (!data) return { title: 'Produit introuvable' }
-  return { title: data.nom, description: data.description.substring(0, 160) }
+  const image = data.images?.[0]
+  return {
+    title: data.nom,
+    description: data.description.substring(0, 160),
+    alternates: { canonical: `https://newenergytechnology.sarl/boutique/${slug}` },
+    openGraph: {
+      title: data.nom,
+      description: data.description.substring(0, 160),
+      ...(image ? { images: [{ url: image, width: 800, height: 800, alt: data.nom }] } : {}),
+    },
+  }
 }
 
 export default async function ProduitPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -23,8 +33,27 @@ export default async function ProduitPage({ params }: { params: Promise<{ slug: 
   if (!produit) notFound()
 
   const catLabel = CATEGORIES_PRODUITS.find(c => c.id === produit.categorie)?.label || produit.categorie
+
+  const productJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: produit.nom,
+    description: produit.description,
+    image: produit.images || [],
+    brand: { '@type': 'Brand', name: 'New Energy Technology SARL' },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'XAF',
+      price: produit.prix_promo || produit.prix,
+      availability: produit.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder',
+      seller: { '@type': 'Organization', name: 'New Energy Technology SARL' },
+      areaServed: 'CM',
+    },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       <Navbar />
       <main className="bg-gray-50 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
