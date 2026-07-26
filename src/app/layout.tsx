@@ -40,6 +40,9 @@ export const metadata: Metadata = {
   verification: {
     google: 'ZE6t3Cp_mTyq5vRL9MSbtdye5SFoZvrbdDSDwBYIVas',
   },
+  other: {
+    'google-site-verification': 'ZE6t3Cp_mTyq5vRL9MSbtdye5SFoZvrbdDSDwBYIVas',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
