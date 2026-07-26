@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   verification: {
-    google: 'a-remplir-google-search-console',
+    google: 'ZE6t3Cp_mTyq5vRL9MSbtdye5SFoZvrbdDSDwBYIVas',
   },
 }
 
