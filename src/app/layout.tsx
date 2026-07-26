@@ -45,6 +45,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className="h-full antialiased">
+      <head>
+        <meta name="google-site-verification" content="ZE6t3Cp_mTyq5vRL9MSbtdye5SFoZvrbdDSDwBYIVas" />
+      </head>
       <body className={`${inter.className} min-h-full flex flex-col`}>
         {children}
       </body>
