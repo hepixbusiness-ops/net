@@ -14,6 +14,10 @@ export const metadata: Metadata = {
   title: 'Nos Réalisations — Projets Solaires au Cameroun',
   description: 'Découvrez les projets d\'installation solaire et de pompage solaire réalisés par New Energy Technology SARL au Cameroun.',
   alternates: { canonical: 'https://newenergytechnology.sarl/realisations' },
+  openGraph: {
+    title: 'Nos Réalisations — Projets Solaires au Cameroun',
+    description: 'Projets d\'installation solaire et de pompage solaire réalisés par New Energy Technology au Cameroun.',
+  },
 }
 
 export default async function RealisationsPage({

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { SITE } from '@/lib/constants'
+import { SITE, IMAGES } from '@/lib/constants'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,30 +28,41 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: `${SITE.name} — ${SITE.slogan}`,
     description: 'Spécialiste en installations solaires, pompage solaire, vidéosurveillance et électricité au Cameroun. Devis gratuit.',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'New Energy Technology SARL — Énergie Solaire Cameroun' }],
+    images: [{ url: IMAGES.heroPanneaux, width: 1200, height: 630, alt: 'New Energy Technology SARL — Énergie Solaire Cameroun' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: `${SITE.name} — ${SITE.slogan}`,
     description: 'Spécialiste en installations solaires, pompage solaire et équipements solaires au Cameroun.',
-    images: ['/og-image.jpg'],
+    images: [IMAGES.heroPanneaux],
   },
   robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
   verification: {
     google: 'ZE6t3Cp_mTyq5vRL9MSbtdye5SFoZvrbdDSDwBYIVas',
   },
-  other: {
-    'google-site-verification': 'ZE6t3Cp_mTyq5vRL9MSbtdye5SFoZvrbdDSDwBYIVas',
+}
+
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  inLanguage: 'fr',
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+    logo: { '@type': 'ImageObject', url: IMAGES.logo },
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="fr" className="h-full antialiased">
-      <head>
-        <meta name="google-site-verification" content="ZE6t3Cp_mTyq5vRL9MSbtdye5SFoZvrbdDSDwBYIVas" />
-      </head>
+      <head />
       <body className={`${inter.className} min-h-full flex flex-col`}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
         {children}
       </body>
     </html>

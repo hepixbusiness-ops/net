@@ -9,6 +9,10 @@ export const metadata: Metadata = {
   title: 'Contact & Devis Gratuit',
   description: 'Contactez New Energy Technology SARL pour votre projet solaire au Cameroun. Devis gratuit sous 24h.',
   alternates: { canonical: 'https://newenergytechnology.sarl/contact' },
+  openGraph: {
+    title: 'Contact & Devis Gratuit — New Energy Technology',
+    description: 'Contactez-nous pour votre projet solaire au Cameroun. Devis gratuit sous 24h.',
+  },
 }
 
 export default function ContactPage() {

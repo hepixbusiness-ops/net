@@ -10,6 +10,10 @@ export const metadata: Metadata = {
   title: 'Nos Services — Solaire, Électricité, Vidéosurveillance & Plomberie',
   description: 'New Energy Technology SARL : installations solaires, vidéosurveillance, électricité générale et plomberie sanitaire au Cameroun.',
   alternates: { canonical: 'https://newenergytechnology.sarl/services' },
+  openGraph: {
+    title: 'Nos Services — Solaire, Électricité, Vidéosurveillance & Plomberie',
+    description: 'Installations solaires, vidéosurveillance, électricité générale et plomberie sanitaire au Cameroun.',
+  },
 }
 
 const servicesSolaires = [
