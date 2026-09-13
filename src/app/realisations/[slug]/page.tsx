@@ -12,7 +12,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const { data } = await (supabase as any).from('realisations').select('titre, description').eq('slug', slug).single()
   if (!data) return { title: 'Réalisation introuvable' }
-  return { title: data.titre, description: data.description.substring(0, 160) }
+  return {
+    title: data.titre,
+    description: data.description.substring(0, 160),
+    alternates: { canonical: `https://newenergytechnology.sarl/realisations/${slug}` },
+    openGraph: {
+      title: data.titre,
+      description: data.description.substring(0, 160),
+      type: 'article',
+    },
+  }
 }
 
 export default async function RealisationPage({ params }: { params: Promise<{ slug: string }> }) {

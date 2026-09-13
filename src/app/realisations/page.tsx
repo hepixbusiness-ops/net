@@ -13,6 +13,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Nos Réalisations — Projets Solaires au Cameroun',
   description: 'Découvrez les projets d\'installation solaire et de pompage solaire réalisés par New Energy Technology SARL au Cameroun.',
+  alternates: { canonical: 'https://newenergytechnology.sarl/realisations' },
 }
 
 export default async function RealisationsPage({
