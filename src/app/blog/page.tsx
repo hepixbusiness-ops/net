@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   title: 'Blog — Actualités Énergie Solaire Cameroun',
   description: 'Conseils, actualités et guides sur l\'énergie solaire au Cameroun par New Energy Technology SARL.',
   alternates: { canonical: 'https://newenergytechnology.sarl/blog' },
+  openGraph: {
+    title: 'Blog — Actualités Énergie Solaire Cameroun',
+    description: 'Conseils, actualités et guides sur l\'énergie solaire au Cameroun.',
+  },
 }
 
 export default async function BlogPage() {

@@ -10,7 +10,7 @@ import type { Metadata } from 'next'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params
-  const { data } = await (supabase as any).from('realisations').select('titre, description').eq('slug', slug).single()
+  const { data } = await (supabase as any).from('realisations').select('titre, description, images').eq('slug', slug).single()
   if (!data) return { title: 'Réalisation introuvable' }
   return {
     title: data.titre,
@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       title: data.titre,
       description: data.description.substring(0, 160),
       type: 'article',
+      ...(data.images?.[0] ? { images: [{ url: data.images[0], width: 1200, height: 630, alt: data.titre }] } : {}),
     },
   }
 }
@@ -32,8 +33,21 @@ export default async function RealisationPage({ params }: { params: Promise<{ sl
 
   const typeLabel = TYPES_PROJET.find(t => t.id === real.type_projet)?.label || real.type_projet
 
+  const realisationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: real.titre,
+    description: real.description.substring(0, 160),
+    datePublished: real.date_realisation,
+    author: { '@type': 'Organization', name: 'New Energy Technology SARL', url: 'https://newenergytechnology.sarl' },
+    url: `https://newenergytechnology.sarl/realisations/${slug}`,
+    ...(real.images?.[0] ? { image: real.images[0] } : {}),
+    inLanguage: 'fr',
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(realisationJsonLd) }} />
       <Navbar />
       <main>
         {/* Header avec image principale */}

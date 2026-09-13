@@ -2,7 +2,7 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 import type { Metadata } from 'next'
-import { SITE } from '@/lib/constants'
+import { SITE, IMAGES } from '@/lib/constants'
 import Navbar from '@/components/layout/Navbar'
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: `${SITE.name} — Installations Solaires au Cameroun`,
     description: 'Spécialiste en énergie solaire, pompage solaire et vidéosurveillance au Cameroun. Devis gratuit sous 24h.',
     url: SITE.url,
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'New Energy Technology SARL' }],
+    images: [{ url: IMAGES.heroPanneaux, width: 1200, height: 630, alt: 'New Energy Technology SARL' }],
   },
 }
 
@@ -25,8 +25,8 @@ const localBusinessJsonLd = {
   alternateName: SITE.shortName,
   description: 'Spécialiste en installations solaires, pompage solaire, vidéosurveillance et électricité au Cameroun.',
   url: SITE.url,
-  logo: `${SITE.url}/logo.jpg`,
-  image: `${SITE.url}/og-image.jpg`,
+  logo: IMAGES.logo,
+  image: IMAGES.heroPanneaux,
   telephone: ['+237691287852', '+237677659959', '+237678067592', '+237693396362'],
   email: SITE.email,
   address: {
