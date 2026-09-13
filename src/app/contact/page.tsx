@@ -8,6 +8,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Contact & Devis Gratuit',
   description: 'Contactez New Energy Technology SARL pour votre projet solaire au Cameroun. Devis gratuit sous 24h.',
+  alternates: { canonical: 'https://newenergytechnology.sarl/contact' },
 }
 
 export default function ContactPage() {

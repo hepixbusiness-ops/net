@@ -9,6 +9,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Nos Services — Solaire, Électricité, Vidéosurveillance & Plomberie',
   description: 'New Energy Technology SARL : installations solaires, vidéosurveillance, électricité générale et plomberie sanitaire au Cameroun.',
+  alternates: { canonical: 'https://newenergytechnology.sarl/services' },
 }
 
 const servicesSolaires = [
